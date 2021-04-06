@@ -12,11 +12,11 @@ namespace Dragablz
         private object _header;
         private object _content;
 
-        public HeaderedItemViewModel()
+        public HeaderedItemViewModel ( )
         {
         }
 
-        public HeaderedItemViewModel(object header, object content, bool isSelected = false)
+        public HeaderedItemViewModel ( object header, object content, bool isSelected = false )
         {
             _header = header;
             _content = content;
@@ -28,13 +28,9 @@ namespace Dragablz
             get { return _header; }
             set
             {
-                if (_header == value) return;
+                if ( _header == value ) return;
                 _header = value;
-#if NET40
-                OnPropertyChanged("Header");
-#else
-                OnPropertyChanged();
-#endif
+                OnPropertyChanged ( );
             }
         }
 
@@ -43,13 +39,9 @@ namespace Dragablz
             get { return _content; }
             set
             {
-                if (_content == value) return;
+                if ( _content == value ) return;
                 _content = value;
-#if NET40
-                OnPropertyChanged("Content");
-#else
-                OnPropertyChanged();
-#endif
+                OnPropertyChanged ( );
             }
         }
 
@@ -58,26 +50,17 @@ namespace Dragablz
             get { return _isSelected; }
             set
             {
-                if (_isSelected == value) return;
+                if ( _isSelected == value ) return;
                 _isSelected = value;
-#if NET40
-                OnPropertyChanged("IsSelected");
-#else
-                OnPropertyChanged();
-#endif
+                OnPropertyChanged ( );
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-#if NET40
-        protected virtual void OnPropertyChanged(string propertyName)
-#else
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-#endif
+        protected virtual void OnPropertyChanged ( [CallerMemberName] string propertyName = null )
         {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke ( this, new PropertyChangedEventArgs ( propertyName ) );
         }
     }
 }

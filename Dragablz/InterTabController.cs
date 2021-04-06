@@ -1,52 +1,51 @@
-﻿using System.Dynamic;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Dragablz
 {
     public class InterTabController : FrameworkElement
     {
-        public InterTabController()
+        public InterTabController ( )
         {
             HorizontalPopoutGrace = 8;
             VerticalPopoutGrace = 8;
-            MoveWindowWithSolitaryTabs = true;            
+            MoveWindowWithSolitaryTabs = true;
         }
 
         public static readonly DependencyProperty HorizontalPopoutGraceProperty = DependencyProperty.Register(
-            "HorizontalPopoutGrace", typeof (double), typeof (InterTabController), new PropertyMetadata(8.0));
+            nameof(HorizontalPopoutGrace), typeof (double), typeof (InterTabController), new PropertyMetadata(8.0));
 
         public double HorizontalPopoutGrace
         {
-            get { return (double) GetValue(HorizontalPopoutGraceProperty); }
-            set { SetValue(HorizontalPopoutGraceProperty, value); }
+            get { return (double) GetValue ( HorizontalPopoutGraceProperty ); }
+            set { SetValue ( HorizontalPopoutGraceProperty, value ); }
         }
 
         public static readonly DependencyProperty VerticalPopoutGraceProperty = DependencyProperty.Register(
-            "VerticalPopoutGrace", typeof (double), typeof (InterTabController), new PropertyMetadata(8.0));
+            nameof(VerticalPopoutGrace), typeof (double), typeof (InterTabController), new PropertyMetadata(8.0));
 
         public double VerticalPopoutGrace
         {
-            get { return (double) GetValue(VerticalPopoutGraceProperty); }
-            set { SetValue(VerticalPopoutGraceProperty, value); }
+            get { return (double) GetValue ( VerticalPopoutGraceProperty ); }
+            set { SetValue ( VerticalPopoutGraceProperty, value ); }
         }
 
         public static readonly DependencyProperty MoveWindowWithSolitaryTabsProperty = DependencyProperty.Register(
-            "MoveWindowWithSolitaryTabs", typeof (bool), typeof (InterTabController), new PropertyMetadata(true));
+            nameof(MoveWindowWithSolitaryTabs), typeof (bool), typeof (InterTabController), new PropertyMetadata(true));
 
         public bool MoveWindowWithSolitaryTabs
         {
-            get { return (bool) GetValue(MoveWindowWithSolitaryTabsProperty); }
-            set { SetValue(MoveWindowWithSolitaryTabsProperty, value); }
+            get { return (bool) GetValue ( MoveWindowWithSolitaryTabsProperty ); }
+            set { SetValue ( MoveWindowWithSolitaryTabsProperty, value ); }
         }
 
         public static readonly DependencyProperty InterTabClientProperty = DependencyProperty.Register(
-            "InterTabClient", typeof (IInterTabClient), typeof (InterTabController),
-            new PropertyMetadata(new DefaultInterTabClient()));
+            nameof(InterTabClient), typeof (IInterTabClient), typeof (InterTabController),
+            new PropertyMetadata(new DefaultInterTabClient ( )));
 
         public IInterTabClient InterTabClient
         {
-            get { return (IInterTabClient) GetValue(InterTabClientProperty); }
-            set { SetValue(InterTabClientProperty, value); }
+            get { return (IInterTabClient) GetValue ( InterTabClientProperty ); }
+            set { SetValue ( InterTabClientProperty, value ); }
         }
 
         /*

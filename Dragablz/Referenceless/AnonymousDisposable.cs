@@ -3,29 +3,23 @@ using System.Threading;
 
 namespace Dragablz.Referenceless
 {
-    internal sealed class AnonymousDisposable : ICancelable, IDisposable
+    internal sealed class AnonymousDisposable : ICancelable
     {
         private volatile Action _dispose;
 
-        public bool IsDisposed
+        public bool IsDisposed => _dispose == null;
+
+        public AnonymousDisposable ( Action dispose )
         {
-            get
-            {
-                return this._dispose == null;
-            }
+            _dispose = dispose;
         }
 
-        public AnonymousDisposable(Action dispose)
+        public void Dispose ( )
         {
-            this._dispose = dispose;
-        }
-
-        public void Dispose()
-        {
-            var action = Interlocked.Exchange<Action>(ref _dispose, (Action)null);
-            if (action == null)
+            var action = Interlocked.Exchange(ref _dispose, null);
+            if ( action == null )
                 return;
-            action();
+            action ( );
         }
     }
 }

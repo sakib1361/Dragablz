@@ -1,7 +1,3 @@
-#if NET40
-using System.Collections;
-using System.Reflection;
-#endif
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,46 +9,39 @@ namespace Dragablz.Core
 {
     internal static class Extensions
     {
-        public static IEnumerable<TContainer> Containers<TContainer>(this ItemsControl itemsControl) where TContainer : class
+        public static IEnumerable < TContainer > Containers < TContainer > ( this ItemsControl itemsControl ) where TContainer : class
         {
-#if NET40
-            var fieldInfo = typeof(ItemContainerGenerator).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
-            var list = (IList)fieldInfo.GetValue(itemsControl.ItemContainerGenerator);            
-            for (var i = 0; i < list.Count; i++)
-#else
-            for (var i = 0; i < itemsControl.ItemContainerGenerator.Items.Count; i++)
-#endif
+            for ( var i = 0; i < itemsControl.ItemContainerGenerator.Items.Count; i++ )
             {
-                var container = itemsControl.ItemContainerGenerator.ContainerFromIndex(i) as TContainer;
-                if (container != null)
+                if ( itemsControl.ItemContainerGenerator.ContainerFromIndex ( i ) is TContainer container )
                     yield return container;
             }
         }
 
-        public static IEnumerable<TObject> Except<TObject>(this IEnumerable<TObject> first, params TObject[] second)
+        public static IEnumerable < TObject > Except < TObject > ( this IEnumerable < TObject > first, params TObject [ ] second )
         {
-            return first.Except((IEnumerable<TObject>)second);
+            return first.Except ( (IEnumerable < TObject >) second );
         }
 
-        public static IEnumerable<object> LogicalTreeDepthFirstTraversal(this DependencyObject node)
+        public static IEnumerable < object > LogicalTreeDepthFirstTraversal ( this DependencyObject node )
         {
-            if (node == null) yield break;
+            if ( node == null ) yield break;
             yield return node;
 
-            foreach (var child in LogicalTreeHelper.GetChildren(node).OfType<DependencyObject>()
-                .SelectMany(depObj => depObj.LogicalTreeDepthFirstTraversal()))
+            foreach ( var child in LogicalTreeHelper.GetChildren ( node ).OfType < DependencyObject > ( )
+                .SelectMany ( depObj => depObj.LogicalTreeDepthFirstTraversal ( ) ) )
                 yield return child;
         }
 
-        public static IEnumerable<object> VisualTreeDepthFirstTraversal(this DependencyObject node)
+        public static IEnumerable < object > VisualTreeDepthFirstTraversal ( this DependencyObject node )
         {
-            if (node == null) yield break;
+            if ( node == null ) yield break;
             yield return node;
 
-            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(node); i++)
+            for ( var i = 0; i < VisualTreeHelper.GetChildrenCount ( node ); i++ )
             {
                 var child = VisualTreeHelper.GetChild(node, i);
-                foreach (var d in child.VisualTreeDepthFirstTraversal())
+                foreach ( var d in child.VisualTreeDepthFirstTraversal ( ) )
                 {
                     yield return d;
                 }
@@ -64,14 +53,14 @@ namespace Dragablz.Core
         /// </summary>
         /// <param name="dependencyObject"></param>
         /// <returns></returns>
-        public static IEnumerable<DependencyObject> VisualTreeAncestory(this DependencyObject dependencyObject)
+        public static IEnumerable < DependencyObject > VisualTreeAncestory ( this DependencyObject dependencyObject )
         {
-            if (dependencyObject == null) throw new ArgumentNullException("dependencyObject");
+            if ( dependencyObject == null ) throw new ArgumentNullException ( nameof ( dependencyObject ) );
 
-            while (dependencyObject != null)
+            while ( dependencyObject != null )
             {
                 yield return dependencyObject;
-                dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+                dependencyObject = VisualTreeHelper.GetParent ( dependencyObject );
             }
         }
 
@@ -80,14 +69,14 @@ namespace Dragablz.Core
         /// </summary>
         /// <param name="dependencyObject"></param>
         /// <returns></returns>
-        public static IEnumerable<DependencyObject> LogicalTreeAncestory(this DependencyObject dependencyObject)
+        public static IEnumerable < DependencyObject > LogicalTreeAncestory ( this DependencyObject dependencyObject )
         {
-            if (dependencyObject == null) throw new ArgumentNullException("dependencyObject");
+            if ( dependencyObject == null ) throw new ArgumentNullException ( nameof ( dependencyObject ) );
 
-            while (dependencyObject != null)
+            while ( dependencyObject != null )
             {
                 yield return dependencyObject;
-                dependencyObject = LogicalTreeHelper.GetParent(dependencyObject);
+                dependencyObject = LogicalTreeHelper.GetParent ( dependencyObject );
             }
         }
 
@@ -96,12 +85,12 @@ namespace Dragablz.Core
         /// </summary>
         /// <param name="window"></param>
         /// <returns></returns>
-        public static double GetActualLeft(this Window window)
+        public static double GetActualLeft ( this Window window )
         {
-            if (window.WindowState == WindowState.Maximized)
+            if ( window.WindowState == WindowState.Maximized )
             {
                 var leftField = typeof(Window).GetField("_actualLeft", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                return leftField?.GetValue(window) as double? ?? 0;
+                return leftField?.GetValue ( window ) as double? ?? 0;
             }
 
             return window.Left;
@@ -112,16 +101,15 @@ namespace Dragablz.Core
         /// </summary>
         /// <param name="window"></param>
         /// <returns></returns>
-        public static double GetActualTop(this Window window)
+        public static double GetActualTop ( this Window window )
         {
-            if (window.WindowState == WindowState.Maximized)
+            if ( window.WindowState == WindowState.Maximized )
             {
                 var topField = typeof(Window).GetField("_actualTop", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                return topField?.GetValue(window) as double? ?? 0;
+                return topField?.GetValue ( window ) as double? ?? 0;
             }
 
             return window.Top;
         }
-
     }
 }

@@ -3,20 +3,18 @@ using System.Collections.Generic;
 
 namespace Dragablz.Core
 {
-    internal class FuncComparer<TObject> : IComparer<TObject>
+    internal class FuncComparer < TObject > : IComparer < TObject >
     {
-        private readonly Func<TObject, TObject, int> _comparer;
+        private readonly Func < TObject, TObject, int > _comparer;
 
-        public FuncComparer(Func<TObject, TObject, int> comparer)
+        public FuncComparer ( Func < TObject, TObject, int > comparer )
         {
-            if (comparer == null) throw new ArgumentNullException("comparer");
-            
-            _comparer = comparer;
+            _comparer = comparer ?? throw new ArgumentNullException ( nameof ( comparer ) );
         }
 
-        public int Compare(TObject x, TObject y)
+        public int Compare ( TObject x, TObject y )
         {
-            return _comparer(x, y);
+            return _comparer ( x, y );
         }
     }
 }

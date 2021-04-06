@@ -4,51 +4,32 @@ using System.Windows.Controls.Primitives;
 
 namespace Dragablz
 {
-    public delegate void DragablzDragCompletedEventHandler(object sender, DragablzDragCompletedEventArgs e);
+    public delegate void DragablzDragCompletedEventHandler ( object sender, DragablzDragCompletedEventArgs e );
 
     public class DragablzDragCompletedEventArgs : RoutedEventArgs
     {
-        private readonly DragablzItem _dragablzItem;
-        private readonly bool _isDropTargetFound;
-        private readonly DragCompletedEventArgs _dragCompletedEventArgs;
-
-        public DragablzDragCompletedEventArgs(DragablzItem dragablzItem, DragCompletedEventArgs dragCompletedEventArgs)
+        public DragablzDragCompletedEventArgs ( DragablzItem dragablzItem, DragCompletedEventArgs dragCompletedEventArgs )
         {
-            if (dragablzItem == null) throw new ArgumentNullException("dragablzItem");
-            if (dragCompletedEventArgs == null) throw new ArgumentNullException("dragCompletedEventArgs");
-            
-            _dragablzItem = dragablzItem;
-            _dragCompletedEventArgs = dragCompletedEventArgs;
+            DragablzItem = dragablzItem ?? throw new ArgumentNullException ( nameof ( dragablzItem ) );
+            DragCompletedEventArgs = dragCompletedEventArgs ?? throw new ArgumentNullException ( nameof ( dragCompletedEventArgs ) );
         }
 
-        public DragablzDragCompletedEventArgs(RoutedEvent routedEvent, DragablzItem dragablzItem, DragCompletedEventArgs dragCompletedEventArgs)
-            : base(routedEvent)
+        public DragablzDragCompletedEventArgs ( RoutedEvent routedEvent, DragablzItem dragablzItem, DragCompletedEventArgs dragCompletedEventArgs )
+            : base ( routedEvent )
         {
-            if (dragablzItem == null) throw new ArgumentNullException("dragablzItem");
-            if (dragCompletedEventArgs == null) throw new ArgumentNullException("dragCompletedEventArgs");
-
-            _dragablzItem = dragablzItem;            
-            _dragCompletedEventArgs = dragCompletedEventArgs;
+            DragablzItem = dragablzItem ?? throw new ArgumentNullException ( nameof ( dragablzItem ) );
+            DragCompletedEventArgs = dragCompletedEventArgs ?? throw new ArgumentNullException ( nameof ( dragCompletedEventArgs ) );
         }
 
-        public DragablzDragCompletedEventArgs(RoutedEvent routedEvent, object source, DragablzItem dragablzItem, DragCompletedEventArgs dragCompletedEventArgs)
-            : base(routedEvent, source)
+        public DragablzDragCompletedEventArgs ( RoutedEvent routedEvent, object source, DragablzItem dragablzItem, DragCompletedEventArgs dragCompletedEventArgs )
+            : base ( routedEvent, source )
         {
-            if (dragablzItem == null) throw new ArgumentNullException("dragablzItem");
-            if (dragCompletedEventArgs == null) throw new ArgumentNullException("dragCompletedEventArgs");
-
-            _dragablzItem = dragablzItem;
-            _dragCompletedEventArgs = dragCompletedEventArgs;
+            DragablzItem = dragablzItem ?? throw new ArgumentNullException ( nameof ( dragablzItem ) );
+            DragCompletedEventArgs = dragCompletedEventArgs ?? throw new ArgumentNullException ( nameof ( dragCompletedEventArgs ) );
         }
 
-        public DragablzItem DragablzItem
-        {
-            get { return _dragablzItem; }
-        }
+        public DragablzItem DragablzItem { get; }
 
-        public DragCompletedEventArgs DragCompletedEventArgs
-        {
-            get { return _dragCompletedEventArgs; }
-        }        
+        public DragCompletedEventArgs DragCompletedEventArgs { get; }
     }
 }

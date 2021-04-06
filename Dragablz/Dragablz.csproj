@@ -1,33 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;net45;net40</TargetFrameworks>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <PackageIconUrl>https://raw.githubusercontent.com/ButchersBoy/Dragablz/master/Resources/D32.png</PackageIconUrl>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>http://dragablz.net</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/ButchersBoy/Dragablz</RepositoryUrl>
-    <PackageTags>WPF TabControl Tab Tearable</PackageTags>
-    <PackageReleaseNotes>Support for .Net Core 3.0</PackageReleaseNotes>
-    <RepositoryType>git</RepositoryType>
-    <DocumentationFile>..\bin\Release\Dragablz.xml</DocumentationFile>
-  </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\bin\Debug</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\bin\Release</OutputPath>
+    <PackageId>HIT.Dragablz</PackageId>
+    <Description>Fork of the Dragablz library for .NET Core with layout persistance support</Description>
+    <PackageTags>Dragablz</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Include="..\..\LICENSE" Visible="false" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" />
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" />
   </ItemGroup>
 
 </Project>
