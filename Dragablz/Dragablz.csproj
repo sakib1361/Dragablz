@@ -4,18 +4,16 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
 
-    <PackageId>HIT.Dragablz</PackageId>
-    <Description>Fork of the Dragablz library for .NET Core with layout persistance support</Description>
+    <PackageId>Sakib.Dragablz</PackageId>
+    <Description>Fork of the Dragablz library for .NET Core with layout persistance support and toolbar placement fix</Description>
     <PackageTags>Dragablz</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/sakib1361/Dragablz</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sakib1361/Dragablz</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Visible="false" Pack="true" PackagePath="" />
+    <None Include="..\..\LICENSE" Visible="true" Pack="true" PackagePath="" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" />
-    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" />
-  </ItemGroup>
-
 </Project>

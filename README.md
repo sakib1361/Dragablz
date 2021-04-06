@@ -3,3 +3,5 @@
 
 # Dragablz
 Fork of the Dragablz library for .NET Core with layout persistance support
+
+Slightly modified from original to support bottom tab bar
